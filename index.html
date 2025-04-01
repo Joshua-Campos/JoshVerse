@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Joshua Wellness - Tu compañero en el camino hacia la salud y el bienestar.">
+  <meta name="keywords" content="salud, bienestar, fitness, nutrición, ejercicio">
+  <meta name="author" content="Joshua Campos">
+  <title>Joshua Wellness</title>
+  <link rel="stylesheet" href="healthfit.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#acerca">Acerca de</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><button id="modoOscuro">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <section id="inicio">
+      <h1>Joshua Wellness</h1>
+      <p>"Tu compañero en el camino hacia la salud."</p>
+      <img src="syb.jpeg" alt="Imagen de salud y bienestar" class="imagen-principal">
+    </section>
+    
+    <section id="acerca">
+      <h2>Sobre mí</h2>
+      <p>Bienvenido a Joshua Wellness, un espacio dedicado a la salud y el bienestar.</p>
+    </section>
+    
+    <section id="blog">
+      <h2>Blog de Salud y Bienestar</h2>
+      <p>Encuentra artículos sobre nutrición, ejercicio y hábitos saludables.</p>
+    </section>
+    
+    <section id="testimonios">
+      <h2>Testimonios</h2>
+      <p>Personas que han mejorado su vida con nuestros consejos.</p>
+      <blockquote>"Gracias a Joshua Wellness, logré cambiar mis hábitos y sentirme mejor." - Ana Pérez</blockquote>
+      <blockquote>"Ejercicios y nutrición al alcance de todos. ¡Recomendado!" - Carlos Gómez</blockquote>
+    </section>
+    
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Déjanos un mensaje para cualquier consulta o sugerencia.</p>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 Joshua Wellness. Todos los derechos reservados.</p>
+  </footer>
+  
+  <script>
+    const botonModoOscuro = document.getElementById('modoOscuro');
+    botonModoOscuro.addEventListener('click', () => {
+      document.body.classList.toggle('oscuro');
+    });
+  </script>
+</body>
+</html>
