@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Calorías y Macros</title>
+  <link rel="stylesheet" href="p7.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Calorías y Macros</h1>
+
+    <form id="calcForm">
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" required />
+
+      <label for="sexo">Sexo:</label>
+      <select id="sexo">
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+      </select>
+
+      <label for="peso">Peso (kg):</label>
+      <input type="number" id="peso" required />
+
+      <label for="altura">Altura (cm):</label>
+      <input type="number" id="altura" required />
+
+      <label for="actividad">Nivel de actividad:</label>
+      <select id="actividad">
+        <option value="1.2">Sedentario</option>
+        <option value="1.375">Ligera actividad</option>
+        <option value="1.55">Moderada actividad</option>
+        <option value="1.725">Alta actividad</option>
+        <option value="1.9">Atleta</option>
+      </select>
+
+      <label for="objetivo">Objetivo:</label>
+      <select id="objetivo">
+        <option value="deficit">Perder grasa</option>
+        <option value="mantenimiento">Mantener peso</option>
+        <option value="superavit">Ganar músculo</option>
+      </select>
+
+      <div class="botones">
+        <button type="button" onclick="calcularCalorias()">Calcular</button>
+        <button type="button" onclick="resetearFormulario()">Resetear</button>
+      </div>
+    </form>
+
+    <div id="resultado"></div>
+    <div id="recetas"></div>
+    <div class="boton-volver">
+      <a href="index.html">Regresar al inicio</a>
+    </div>
+  </div>
+
+  <script src="p7.js"></script>
+</body>
+</html>
