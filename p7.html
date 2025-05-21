@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora Nutricional</title>
+  <style>
+    /* --- Navegación --- */
+    nav {
+      background-color: #004080;
+      padding: 10px 20px;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    nav ul li {
+      margin-right: 20px;
+    }
+    nav ul li a, nav ul li button {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    nav ul li button:hover, nav ul li a:hover {
+      color: #ffcc00;
+    }
+
+    /* --- Contenedor --- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f5f5f5;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+      max-width: 700px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 1rem;
+    }
+    form {
+      display: grid;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="number"], select {
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #004080;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #00264d;
+    }
+    #resultado, #historialPlanes {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e6f0ff;
+      border-radius: 8px;
+      white-space: pre-line;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav ul li {
+        margin-bottom: 10px;
+      }
+      main {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="index.html">🏠</a></li>
+    <li><a href="p2.html">Inicio</a></li>
+    <li><a href="p3.html">Blog</a></li>
+    <li><a href="p4.html">Contacto</a></li>
+    <li><a href="p7.html">Calculadora</a></li>
+    <li><button id="modoOscuro">🌙</button></li>
+  </ul>
+</nav>
+
+<main>
+  <h1>Calculadora Nutricional</h1>
+  <form id="formCalculadora">
+    <label for="peso">Peso (kg):</label>
+    <input type="number" id="peso" name="peso" min="30" max="200" step="0.1" required />
+
+    <label for="estatura">Estatura (cm):</label>
+    <input type="number" id="estatura" name="estatura" min="100" max="250" step="0.1" required />
+
+    <label for="edad">Edad (años):</label>
+    <input type="number" id="edad" name="edad" min="10" max="100" required />
+
+    <label for="objetivo">Objetivo:</label>
+    <select id="objetivo" name="objetivo" required>
+      <option value="" disabled selected>Seleccione un objetivo</option>
+      <option value="perder">Perder peso</option>
+      <option value="mantener">Mantener peso</option>
+      <option value="ganar">Ganar músculo</option>
+    </select>
+
+    <button type="submit">Calcular</button>
+  </form>
+
+  <div id="resultado"></div>
+  <button id="guardarPlan" style="display:none; margin-top: 10px;">Guardar plan</button>
+  <button id="verHistorial" style="margin-top: 20px;">Ver historial guardado</button>
+  <div id="historialPlanes"></div>
+</main>
+
+<script>
+  const form = document.getElementById('formCalculadora');
+  const resultado = document.getElementById('resultado');
+  const btnGuardar = document.getElementById('guardarPlan');
+  const btnVerHistorial = document.getElementById('verHistorial');
+  const historialDiv = document.getElementById('historialPlanes');
+
+  // Calcular IMC
+  function calcularIMC(peso, estaturaCm) {
+    const estaturaM = estaturaCm / 100;
+    return peso / (estaturaM * estaturaM);
+  }
+
+  // Función para generar plan según objetivo
+  function generarPlan(objetivo, peso, estatura, edad, imc) {
+    let plan = `Resultados:\n- Peso: ${peso} kg\n- Estatura: ${estatura} cm\n- Edad: ${edad} años\n- IMC: ${imc.toFixed(2)}\n\n`;
+
+    if (objetivo === 'perder') {
+      plan += "Objetivo: Perder peso\n";
+      plan += "Plan diario:\n";
+      plan += "- Calorías: 1500 kcal\n";
+      plan += "- Proteínas: 120 g\n";
+      plan += "- Carbohidratos: 150 g\n";
+      plan += "- Grasas: 40 g\n\n";
+      plan += "Recetas recomendadas:\n- Ensalada de pollo con aguacate\n- Batido de proteínas con frutos rojos\n- Pescado al horno con vegetales";
+    } else if (objetivo === 'mantener') {
+      plan += "Objetivo: Mantener peso\n";
+      plan += "Plan diario:\n";
+      plan += "- Calorías: 2200 kcal\n";
+      plan += "- Proteínas: 150 g\n";
+      plan += "- Carbohidratos: 250 g\n";
+      plan += "- Grasas: 70 g\n\n";
+      plan += "Recetas recomendadas:\n- Omelette con espinacas y queso\n- Pollo a la plancha con arroz integral\n- Yogur con nueces y miel";
+    } else if (objetivo === 'ganar') {
+      plan += "Objetivo: Ganar músculo\n";
+      plan += "Plan diario:\n";
+      plan += "- Calorías: 2800 kcal\n";
+      plan += "- Proteínas: 200 g\n";
+      plan += "- Carbohidratos: 300 g\n";
+      plan += "- Grasas: 80 g\n\n";
+      plan += "Recetas recomendadas:\n- Pechuga de pollo con quinoa y verduras\n- Batido de proteínas con plátano y mantequilla de maní\n- Huevos revueltos con aguacate";
+    } else {
+      plan = "Por favor, seleccione un objetivo válido.";
+    }
+
+    return plan;
+  }
+
+  // Mostrar plan y mostrar botón guardar
+  function mostrarPlan(textoPlan) {
+    resultado.textContent = textoPlan;
+    btnGuardar.style.display = 'inline-block';
+    historialDiv.innerHTML = ''; // Limpia historial cuando mostramos nuevo plan
+  }
+
+  // Manejo de envío del formulario
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const peso = parseFloat(form.peso.value);
+    const estatura = parseFloat(form.estatura.value);
+    const edad = parseInt(form.edad.value);
+    const objetivo = form.objetivo.value;
+
+    if (!peso || !estatura || !edad || !objetivo) {
+      alert('Por favor complete todos los campos.');
+      return;
+    }
+
+    const imc = calcularIMC(peso, estatura);
+    const plan = generarPlan(objetivo, peso, estatura, edad, imc);
+    mostrarPlan(plan);
+  });
+
+  // Guardar plan en localStorage
+  btnGuardar.addEventListener('click', () => {
+    const planActual = resultado.textContent.trim();
+    if (!planActual) {
+      alert('No hay plan para guardar.');
+      return;
+    }
+    const fecha = new Date().toLocaleString();
+    const planParaGuardar = { fecha, plan: planActual };
+
+    let historial = JSON.parse(localStorage.getItem('historialPlanes')) || [];
+    historial.push(planParaGuardar);
+    localStorage.setItem('historialPlanes', JSON.stringify(historial));
+
+    alert('Plan guardado correctamente.');
+    btnGuardar.style.display = 'none';
+  });
+
+  // Mostrar historial guardado
+  btnVerHistorial.addEventListener('click', () => {
+    const historial = JSON.parse(localStorage.getItem('historialPlanes')) || [];
+    if (historial.length === 0) {
+      historialDiv.innerHTML = '<p>No hay planes guardados.</p>';
+      return;
+    }
+
+    historialDiv.innerHTML = historial.map(item => 
+      `<div style="margin-bottom:15px; padding:10px; border:1px solid #ccc; border-radius:8px; background:#fafafa;">
+        <strong>${item.fecha}</strong>
+        <pre style="white-space: pre-wrap; margin-top: 5px;">${item.plan}</pre>
+      </div>`
+    ).join('');
+  });
+
+  // Modo oscuro (simple)
+  const btnModoOscuro = document.getElementById('modoOscuro');
+  btnModoOscuro.addEventListener('click', () => {
+    document.body.classList.toggle('modo-oscuro');
+    if(document.body.classList.contains('modo-oscuro')){
+      btnModoOscuro.textContent = '☀️';
+    } else {
+      btnModoOscuro.textContent = '🌙';
+    }
+  });
+
+  // CSS para modo oscuro dinámico
+  const styleDark = document.createElement('style');
+  styleDark.textContent = `
+    .modo-oscuro {
+      background-color: #121212;
+      color: #ddd;
+    }
+    .modo-oscuro nav {
+      background-color: #222;
+    }
+    .modo-oscuro nav ul li a,
+    .modo-oscuro nav ul li button {
+      color: #ddd;
+    }
+    .modo-oscuro nav ul li a:hover,
+    .modo-oscuro nav ul li button:hover {
+      color: #ffa500;
+    }
+    .modo-oscuro main {
+      background-color: #1e1e1e;
+      box-shadow: 0 0 10px #000;
+    }
+    .modo-oscuro #resultado,
+    .modo-oscuro #historialPlanes {
+      background-color: #2a2a2a;
+    }
+    .modo-oscuro button {
+      background-color: #444;
+      color: #ddd;
+    }
+    .modo-oscuro button:hover {
+      background-color: #666;
+    }
+  `;
+  document.head.appendChild(styleDark);
+</script>
+
+</body>
+</html>
