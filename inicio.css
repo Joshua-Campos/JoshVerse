@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+  background: #00aaff;
+  padding: 15px 0;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 480px) {
+  nav ul {
+    flex-direction: row;       /* Menú en fila horizontal */
+    flex-wrap: wrap;           /* Si no caben en una línea, que continúen en la siguiente */
+    justify-content: center;
+    gap: 8px;                  /* Espacio entre botones */
+    padding: 8px 0;            /* Menos padding para ahorrar espacio */
+  }
+
+  nav ul li {
+    margin: 0;                 /* Quitar márgenes grandes */
+  }
+
+  nav ul li a,
+  nav ul li button {
+    font-size: 14px;           /* Texto más pequeño */
+    padding: 6px 10px;         /* Botones más compactos */
+    border-radius: 5px;
+  }
+
+  header {
+    padding: 15px 10px;        /* Menos padding para ahorrar espacio */
+  }
+}
+
+
+
+
+
+
+
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+button#modoOscuro {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button#modoOscuro:hover {
+  transform: scale(1.1);
+}
+
+main {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+section {
+  background: #fff;
+  padding: 25px;
+  max-width: 700px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+h1, h2 {
+  color: #0077cc;
+  margin-bottom: 15px;
+}
+
+p, li {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.imagen-principal {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.redes-sociales {
+  margin-top: 10px;
+}
+
+.redes-sociales a {
+  text-decoration: none;
+  color: #ccc;
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.redes-sociales a i {
+  margin-right: 6px;
+}
+
+.redes-sociales a:hover {
+  color: #0077cc;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode section {
+  background: #333;
+  color: #ddd;
+}
+
+body.dark-mode nav a {
+  color: #f0f0f0;
+}
+
+body.dark-mode nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .redes-sociales a:hover {
+  color: #66ccff;
+}
+
+/* Estilo específico para el ícono de la casita */
+nav a:first-child {
+  font-size: 20px;
+}
+
+/* Asegura visibilidad en modo oscuro */
+body.dark-mode nav a:first-child {
+  color: #f0f0f0;
+}
+
+body.dark-mode nav a:first-child:hover {
+  color: #ffcc00;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.logo img {
+  width: 200px;
+  height: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  h1, h2 {
+    font-size: 22px;
+  }
+
+  p, li {
+    font-size: 15px;
+  }
+
+  .logo img {
+    width: 150px;
+  }
+}
