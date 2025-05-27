@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Joshua Wellness - Salud y Bienestar" />
+  <meta name="keywords" content="salud, bienestar, fitness, nutrición, ejercicio" />
+  <meta name="author" content="Joshua Campos" />
+  <title>Joshua Wellness</title>
+  <link rel="stylesheet" href="healthfit.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <header>
+    <nav>
+        <ul>
+        <li><a href="index.html">🏠</a></li>
+          <li><a href="p2.html">Inicio</a></li>
+          <li><a href="p3.html">Blog</a></li>
+          <li><a href="p4.html">Contacto</a></li>
+          <li><a href="p7.html">Calculadora</a></li>
+          <li><button id="modoOscuro" aria-label="Activar modo oscuro">🌙</button></li>
+        </ul>
+    </nav>
+  </header>
+
+  <div class="logo">
+    <img src="logo.png" alt="Joshua Wellness Logo" />
+  </div>
+
+  <main>
+    <section>
+      <h1>Bienvenido a Joshua Wellness</h1>
+      <p>Tu compañero en el camino hacia una vida más saludable y equilibrada.</p>
+      <img src="syb.jpeg" alt="Imagen de salud y bienestar" class="imagen-principal" />
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Joshua Wellness. Todos los derechos reservados.</p>
+    <div class="redes-sociales">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+    </div>
+  </footer>
+
+  <script>
+    const botonOscuro = document.getElementById('modoOscuro');
+    botonOscuro.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
