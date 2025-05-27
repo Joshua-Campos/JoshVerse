@@ -157,26 +157,17 @@ body.dark-mode .redes-sociales a:hover {
   color: #66ccff;
 }
 
-/* ✅ RESPONSIVO SOLO ÍCONOS DEL MENÚ */
+/* Responsivo */
 @media (max-width: 768px) {
   .nav-links {
     flex-direction: column;
-    align-items: center;
     gap: 10px;
-    padding: 10px 0;
   }
 
   .nav-links a,
   .nav-links button {
-    font-size: 17px;
-    justify-content: center;
-    width: 100%;
-    max-width: 300px;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .nav-links i {
     font-size: 18px;
+    justify-content: center;
   }
 
   section {
