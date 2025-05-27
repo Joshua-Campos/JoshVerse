@@ -1,0 +1,305 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f7f9fc;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 0;
+}
+
+/* NAV */
+header {
+  background: #00aaff;
+  padding: 15px 0;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+button#modoOscuro {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button#modoOscuro:hover {
+  transform: scale(1.1);
+}
+
+/* Página de contacto */
+main {
+  padding: 30px 20px;
+}
+
+.formulario-contacto .contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.imagen img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-right: 20px;
+  width: 400px;
+}
+
+.formulario {
+  flex: 1;
+  min-width: 300px;
+}
+
+.formulario h2 {
+  margin-bottom: 15px;
+  color: #0077cc;
+}
+
+form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  margin-top: 15px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background-color: #005fa3;
+}
+
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode .formulario-contacto .contenedor {
+  background: #333;
+  color: #ddd;
+}
+
+body.dark-mode nav a {
+  color: #f0f0f0;
+}
+
+body.dark-mode nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilo específico para el ícono de la casita */
+nav a:first-child {
+  font-size: 20px;
+}
+
+body.dark-mode nav a:first-child {
+  color: #f0f0f0;
+}
+
+body.dark-mode nav a:first-child:hover {
+  color: #ffcc00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .formulario-contacto .contenedor {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imagen img {
+    width: 100%;
+    margin: 0 0 20px 0;
+  }
+
+  .formulario {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+/* Estilos para modo claro (por defecto) */
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Estilos para modo oscuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Si quieres oscurecer otros elementos también: */
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode .formulario {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+body.dark-mode button {
+  background-color: #444;
+  color: #fff;
+}
+.redes-sociales a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.redes-sociales a:hover {
+  color: #ff4081;
+}
+
+.redes-sociales i {
+  margin-right: 5px;
+}
+/* Responsive mejorado */
+
+/* Tabletas y móviles */
+@media (max-width: 768px) {
+  .formulario-contacto .contenedor {
+    flex-direction: column;
+    align-items: center;
+    max-width: 90%;
+    padding: 10px;
+  }
+
+  .imagen img {
+    width: 100%;
+    margin: 0 0 20px 0;
+  }
+
+  .formulario {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 15px;
+  }
+
+  nav a {
+    padding: 10px 0;
+    font-size: 18px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  nav ul {
+    padding: 0 10px;
+  }
+  nav a {
+    padding: 8px 0;
+    font-size: 16px;
+  }
+}
+
+/* Celulares muy pequeños */
+@media (max-width: 400px) {
+  .imagen {
+    display: none;
+  }
+  .formulario {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  form button {
+    max-width: 100%;
+  }
+}
+
+/* Mejorar tamaño de inputs y botones para móviles */
+form input,
+form textarea {
+  padding: 12px;
+  font-size: 16px;
+}
+
+form button {
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  margin-top: 20px;
+  font-size: 18px;
+}
