@@ -1,0 +1,231 @@
+/* Reset y fuente */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+background: url('http://localhost/jchf/HealthFitness/fondo.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+  z-index: 0;
+}
+
+/* Capa difuminada encima de la imagen */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+header {
+  background: #00aaff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
+
+.hamburger {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  font-size: 24px;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: none;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a,
+.nav-links button {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+.logo img {
+  max-width: 150px;
+}
+
+/* Contenido principal */
+main {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+section {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  color: #0077cc;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 17px;
+}
+
+.imagen-principal {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.redes-sociales {
+  margin-top: 10px;
+}
+
+.redes-sociales a {
+  color: #ccc;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.redes-sociales a:hover {
+  color: #00aaff;
+}
+
+.redes-sociales a i {
+  margin-right: 6px;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background: #1e1e1e;
+}
+
+body.dark-mode section {
+  background: #333;
+}
+
+body.dark-mode .nav-links a,
+body.dark-mode .nav-links button {
+  color: #f0f0f0;
+}
+
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-links button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .redes-sociales a:hover {
+  color: #66ccff;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #00aaff;
+    width: 100%;
+    display: none;
+    padding: 15px 0;
+    text-align: center;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+}
