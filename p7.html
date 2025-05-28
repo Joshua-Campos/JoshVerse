@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora Nutricional</title>
+  <link rel="stylesheet" href="p7.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta name="description" content="Calculadora nutricional para perder peso, ganar músculo o mantenerte saludable. Guarda tu historial y sigue tu progreso.">
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo-nav">
+    <i class="fas fa-home"></i>
+  </a>
+  <button id="toggleMenu" class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <i class="fas fa-bars"></i>
+  </button>
+  <ul class="nav-links">
+    <li><a href="p2.html">Inicio</a></li>
+    <li><a href="p3.html">Blog</a></li>
+    <li><a href="p4.html">Contacto</a></li>
+    <li><a href="p7.html">Calculadora</a></li>
+    <li><button id="modoOscuro">🌙</button></li>
+  </ul>
+</nav>
+
+
+<main>
+  <h1>Calculadora Nutricional</h1>
+  <form id="formCalculadora">
+    <label for="peso">Peso (kg):</label>
+    <input type="number" id="peso" name="peso" min="30" max="200" step="0.1" required />
+
+    <label for="estatura">Estatura (cm):</label>
+    <input type="number" id="estatura" name="estatura" min="100" max="250" step="0.1" required />
+
+    <label for="edad">Edad (años):</label>
+    <input type="number" id="edad" name="edad" min="10" max="100" required />
+
+    <label for="objetivo">Objetivo:</label>
+    <select id="objetivo" name="objetivo" required>
+      <option value="" disabled selected>Seleccione un objetivo</option>
+      <option value="perder">Perder peso</option>
+      <option value="mantener">Mantener peso</option>
+      <option value="ganar">Ganar músculo</option>
+    </select>
+
+    <button type="submit">Calcular</button>
+  </form>
+
+  <div id="resultado"></div>
+  <button id="guardarPlan" class="btn-guardar-plan" style="display:none; margin-top: 10px;">Guardar plan</button>
+  <button id="verHistorial" class="btn-ver-historia" style="margin-top: 20px;">Ver historial guardado</button>
+  <button id="borrarHistorial" class="btn-eliminar-historial" style="margin-left: 10px;">🗑️ Borrar historial</button>
+
+
+  <div id="historialPlanes"></div>
+</main>
+
+<script>
+  const form = document.getElementById('formCalculadora');
+  const resultado = document.getElementById('resultado');
+  const btnGuardar = document.getElementById('guardarPlan');
+  const btnVerHistorial = document.getElementById('verHistorial');
+  const historialDiv = document.getElementById('historialPlanes');
+  const btnModoOscuro = document.getElementById('modoOscuro');
+  const toggleMenuBtn = document.getElementById('toggleMenu');
+  const navUl = document.querySelector('nav ul');
+
+  // Calcular IMC
+  function calcularIMC(peso, estaturaCm) {
+    const estaturaM = estaturaCm / 100;
+    return peso / (estaturaM * estaturaM);
+  }
+
+  // Generar plan según objetivo
+  function generarPlan(objetivo, peso, estatura, edad, imc) {
+    let plan = `Resultados:\n- Peso: ${peso} kg\n- Estatura: ${estatura} cm\n- Edad: ${edad} años\n- IMC: ${imc.toFixed(2)}\n\n`;
+
+    const planes = {
+      perder: {
+        calorias: 1500, proteinas: 120, carbohidratos: 150, grasas: 40,
+        recetas: ['Ensalada de pollo con aguacate', 'Batido de proteínas con frutos rojos', 'Pescado al horno con vegetales']
+      },
+      mantener: {
+        calorias: 2200, proteinas: 150, carbohidratos: 250, grasas: 70,
+        recetas: ['Omelette con espinacas y queso', 'Pollo a la plancha con arroz integral', 'Yogur con nueces y miel']
+      },
+      ganar: {
+        calorias: 2800, proteinas: 200, carbohidratos: 300, grasas: 80,
+        recetas: ['Pechuga de pollo con quinoa y verduras', 'Batido de proteínas con plátano y mantequilla de maní', 'Huevos revueltos con aguacate']
+      }
+    };
+
+    if (planes[objetivo]) {
+      const p = planes[objetivo];
+      plan += `Objetivo: ${objetivo === 'ganar' ? 'Ganar músculo' : objetivo.charAt(0).toUpperCase() + objetivo.slice(1) + ' peso'}\n`;
+      plan += `Plan diario:\n- Calorías: ${p.calorias} kcal\n- Proteínas: ${p.proteinas} g\n- Carbohidratos: ${p.carbohidratos} g\n- Grasas: ${p.grasas} g\n\n`;
+      plan += "Recetas recomendadas:\n- " + p.recetas.join('\n- ');
+    } else {
+      plan = "Por favor, seleccione un objetivo válido.";
+    }
+
+    return plan;
+  }
+
+  // Mostrar el plan en pantalla
+  function mostrarPlan(textoPlan) {
+    resultado.textContent = textoPlan;
+    btnGuardar.style.display = 'inline-block';
+    historialDiv.innerHTML = '';
+  }
+
+  // Envío del formulario
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const peso = parseFloat(form.peso.value);
+    const estatura = parseFloat(form.estatura.value);
+    const edad = parseInt(form.edad.value);
+    const objetivo = form.objetivo.value;
+
+    if (!peso || !estatura || !edad || !objetivo) {
+      alert('Por favor complete todos los campos.');
+      return;
+    }
+
+    const imc = calcularIMC(peso, estatura);
+    const plan = generarPlan(objetivo, peso, estatura, edad, imc);
+    mostrarPlan(plan);
+  });
+
+  // Guardar plan
+  btnGuardar.addEventListener('click', () => {
+    const planActual = resultado.textContent.trim();
+    if (!planActual) {
+      alert('No hay plan para guardar.');
+      return;
+    }
+    const fecha = new Date().toLocaleString();
+    const planParaGuardar = { fecha, plan: planActual };
+
+    const historial = JSON.parse(localStorage.getItem('historialPlanes')) || [];
+    historial.push(planParaGuardar);
+    localStorage.setItem('historialPlanes', JSON.stringify(historial));
+
+    alert('Plan guardado correctamente.');
+    btnGuardar.style.display = 'none';
+  });
+
+  // Ver historial
+  btnVerHistorial.addEventListener('click', () => {
+    const historial = JSON.parse(localStorage.getItem('historialPlanes')) || [];
+    if (historial.length === 0) {
+      historialDiv.innerHTML = '<p>No hay planes guardados.</p>';
+      return;
+    }
+
+    historialDiv.innerHTML = historial.map(item => `
+      <div style="margin-bottom:15px; padding:10px; border:1px solid #ccc; border-radius:8px; background:#fafafa;">
+        <strong>${item.fecha}</strong>
+        <pre style="white-space: pre-wrap; margin-top: 5px;">${item.plan}</pre>
+      </div>
+    `).join('');
+  });
+
+  
+  // Modo oscuro toggle
+  btnModoOscuro.addEventListener('click', () => {
+    document.body.classList.toggle('modo-oscuro');
+    const isDark = document.body.classList.contains('modo-oscuro');
+    btnModoOscuro.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('modoOscuro', isDark);
+  });
+
+  // Aplicar modo oscuro al cargar
+  if (localStorage.getItem('modoOscuro') === 'true') {
+    document.body.classList.add('modo-oscuro');
+    btnModoOscuro.textContent = '☀️';
+  }
+
+  // Inyectar estilos modo oscuro
+  const styleDark = document.createElement('style');
+  styleDark.textContent = `
+    .modo-oscuro {
+      background-color: #121212;
+      color: #ddd;
+    }
+    .modo-oscuro nav {
+      background-color: #222;
+    }
+    .modo-oscuro nav ul li a,
+    .modo-oscuro nav ul li button {
+      color: #ddd;
+    }
+    .modo-oscuro nav ul li a:hover,
+    .modo-oscuro nav ul li button:hover {
+      color: #ffa500;
+    }
+    .modo-oscuro main {
+      background-color: #1e1e1e;
+      box-shadow: 0 0 10px #000;
+    }
+    .modo-oscuro #resultado,
+    .modo-oscuro #historialPlanes {
+      background-color: #2a2a2a;
+    }
+    .modo-oscuro button {
+      background-color: #444;
+      color: #ddd;
+    }
+    .modo-oscuro button:hover {
+      background-color: #666;
+    }
+  `;
+  document.head.appendChild(styleDark);
+
+  // Menú hamburguesa responsive
+  toggleMenuBtn.addEventListener('click', () => {
+    const expanded = toggleMenuBtn.getAttribute('aria-expanded') === 'true';
+    toggleMenuBtn.setAttribute('aria-expanded', !expanded);
+    navUl.classList.toggle('active');
+  });
+  navUl.querySelectorAll('a, button').forEach(item => {
+  item.addEventListener('click', () => {
+    navUl.classList.remove('active');
+    toggleMenuBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Borrar historial
+document.getElementById('borrarHistorial').addEventListener('click', () => {
+  const confirmar = confirm('¿Estás seguro de que quieres borrar todo el historial guardado? Esta acción no se puede deshacer.');
+  if (confirmar) {
+    localStorage.removeItem('historialPlanes');
+    historialDiv.innerHTML = '<p>Historial eliminado.</p>';
+  }
+});
+
+</script>
+
+
+</body>
+</html>

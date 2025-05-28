@@ -1,0 +1,350 @@
+/* Reset y tipografía */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Fondo y estilo general */
+body {
+  background: url('fondo.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
+  z-index: 0;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+/* Header y navegación */
+header {
+  background: #00aaff;
+  padding: 15px 0;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+nav a:first-child {
+  font-size: 20px;
+}
+
+/* Botón modo oscuro */
+#modoOscuro {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#modoOscuro:hover {
+  transform: scale(1.1);
+}
+
+/* Sección de contacto */
+section.formulario-contacto {
+  padding: 30px 20px;
+}
+
+.formulario-contacto .contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.imagen img {
+  max-width: 100%;
+  width: 400px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.formulario {
+  flex: 1;
+  min-width: 300px;
+}
+
+.formulario h2 {
+  margin-bottom: 15px;
+  color: #0077cc;
+}
+
+/* Estilos del formulario */
+form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+form button {
+  margin-top: 20px;
+  background: #0077cc;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 250px;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #005fa3;
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.redes-sociales a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.redes-sociales a:hover {
+  color: #ff4081;
+}
+
+.redes-sociales i {
+  margin-right: 5px;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode .formulario-contacto .contenedor,
+body.dark-mode .formulario {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  box-shadow: none;
+}
+
+body.dark-mode nav a,
+body.dark-mode nav a:first-child {
+  color: #f0f0f0;
+}
+
+body.dark-mode nav a:hover,
+body.dark-mode nav a:first-child:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffcc00;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.dark-mode button {
+  background: #444;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+  }
+
+  .imagen img {
+    margin: 0 0 20px 0;
+    width: 100%;
+  }
+
+  .formulario-contacto .contenedor {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+/* Botón hamburguesa */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Estilos responsivos para menú hamburguesa */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 10;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: #00aaff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 5;
+  }
+
+  nav ul.menu-abierto {
+    display: flex;
+  }
+}
+/* Responsive general */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .formulario-contacto .contenedor {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .imagen img {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 15px 0;
+  }
+
+  form button {
+    max-width: 100%;
+  }
+}
+
+/* Extra responsive para dispositivos muy pequeños */
+@media (max-width: 400px) {
+  header {
+    padding: 10px 0;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  #modoOscuro {
+    font-size: 16px;
+  }
+
+  .formulario-contacto {
+    padding: 20px 10px;
+  }
+
+  .formulario h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  form input,
+  form textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  form label {
+    font-size: 14px;
+  }
+
+  form button {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  footer {
+    font-size: 12px;
+  }
+
+  .redes-sociales a {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .logo-nav i {
+    font-size: 18px;
+  }
+}
